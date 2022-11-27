@@ -22,7 +22,15 @@ $(function displayPage() {
   // attribute of each time-block be used to conditionally add or remove the
   // past, present, and future classes? How can Day.js be used to get the
   // current hour in 24-hour time?
-  //
+  function timeSet() {
+    var currentTime = dayjs().hour();
+    for (var i = 0; 1 < hours.length; i++) {
+      if (i + 8 < currentTime) hours[i].classList.add('past');
+      if (i + 8 == currentTime) hours[i].classList.add('past');
+      if (i + 8 > currentTime) hours[i].classList.add('past');
+    }
+  };
+  timeSet();
   // TODO: Add code to get any user input that was saved in localStorage and set
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
@@ -36,4 +44,4 @@ $(function displayPage() {
   // Calls the displayTime function to display the date on the page.
   displayDate();
 });
-displayPage()
+displayPage();
