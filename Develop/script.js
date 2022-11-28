@@ -39,6 +39,7 @@ $(function() {
     };
   };
   };
+  timeSet()
   setInterval(function() {
     timeSet()
   },1000);
@@ -46,8 +47,14 @@ $(function() {
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
   function getStorage() {
-    var value = localStorage.getItem('tasks');
-    timeBlk.value = value;
+    var storageEl = [];
+    for (var i = 0; i < hours.length; i++) {
+      storageEl.push(localStorage.getItem(hours[i]))
+    }
+    desc.each(function() {
+      var task = $(this).parent().attr("id");
+      $(this).text(storageEl[task-9]);
+    });
   };
   getStorage();
 
