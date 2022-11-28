@@ -4,7 +4,7 @@
 
 var currentDate = $('#currentDay');
 var saveButton = $('.saveBtn');
-var timeBlk = $('#time-block');
+var desc = $('.description');
 var hours = [9, 10, 11, 12, 13, 14, 15, 16, 17];
 
 $(function() {
@@ -15,8 +15,7 @@ $(function() {
   // time-block containing the button that was clicked? How might the id be
   // useful when saving the description in local storage?
   $('.saveBtn').on('click', function() {
-    localStorage.setItem('tasks', timeBlk.value);
-    console.log("Saved!");
+    localStorage.setItem($(this).parent().attr("id"), $(this).siblings(".description").val());
   });
 
   // TODO: Add code to apply the past, present, or future class to each time
@@ -40,7 +39,9 @@ $(function() {
     };
   };
   };
-  timeSet();
+  setInterval(function() {
+    timeSet()
+  },1000);
   // TODO: Add code to get any user input that was saved in localStorage and set
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
